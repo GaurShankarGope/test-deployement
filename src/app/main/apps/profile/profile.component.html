@@ -1,0 +1,299 @@
+<div id="edit-user" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+    <div class="heading center">
+        <!-- <div>
+            <h2>Broker Management</h2>
+        </div> -->
+
+        <div class="header-row">
+            <div class="row-col-3">
+                <h2>Profile Management</h2>
+            </div>
+
+            <div class="row-col-3">
+                <div style="float: right;">
+                    <mat-icon class="home">home</mat-icon> <a routerLink="/apps/dashboards/analytics"> Home </a> > <b>Profile </b>
+                </div>
+            </div>
+        </div>
+
+        <div class="mat-elevation-z8">
+
+            <div class="main-tab">
+                <div class="header-row">
+                    <div class="row-col-3">
+                        <!-- <h2 style="padding-bottom: 0;"> Edit Sub Admin </h2> -->
+                    </div>
+                    <div class="row-col-6 " style="text-align:center;">
+                    <img src="../../../../assets/images/avatars/alice.jpg" />
+<br />
+<br />
+                        <div>
+                            <input type="file" name="profileImage" (change)="changeImage($event)" [(ngModel)]="profileImage" >
+                        </div> 
+                    </div>
+                    <div class="row-col-3">
+                        <!-- <button routerLink="/apps/user-management" class="add-item add-item--back-button"> Back </button> -->
+                    </div>
+
+
+                </div>
+
+            </div>
+            <hr>
+            <div class="content-card">
+
+
+                    <form [formGroup]="userManagementeditForm" (ngSubmit)="onSubmit()">
+<!--                         
+                            <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example user icon">account_circle</mat-icon>
+                                <mat-label>User Name* </mat-label>
+                                <input style="margin-left: 4%;" matInput formControlName="username" maxlength="30" style="margin-left: 4%;">
+                                <mat-error *ngIf="userManagementeditForm.get('username').hasError('required')">
+                                    User Name is required
+                                </mat-error>
+        
+                                <mat-error *ngIf="userManagementeditForm.get('username').hasError('pattern')">
+                                    Enter valid user Name
+                                </mat-error>
+                            </mat-form-field>
+        
+         -->
+                            <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example calls icon">call</mat-icon>
+        
+                                <!-- <mat-label>Mobile Number *</mat-label> -->
+                                <input style="margin-left: 4%;"    minlength="6" maxlength="14" matInput type="tel" id="phone" formControlName="mobileNo">
+                                <mat-error *ngIf="userManagementeditForm.get('mobileNo').hasError('mobileNo')">
+                                    Mobile number is required and mobile number should be minimum 10 digit
+                                </mat-error>
+        
+                                <mat-error *ngIf="userManagementeditForm.get('mobileNo').hasError('pattern')">
+                                    Enter valid Mobile No
+                                </mat-error>
+                            </mat-form-field>
+        
+        
+                            <!-- <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Password *</mat-label>
+                                <input style="margin-left: 4%;" matInput type="password" minlength="6" formControlName="password">
+                                <mat-error>
+                                    Password is required and password should be of minimum 6 characters.
+                                </mat-error>
+                            </mat-form-field>
+        
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Repeat Password *</mat-label>
+                                <input style="margin-left: 4%;" matInput type="password" minlength="6" formControlName="repassword">
+                                <mat-error *ngIf="userManagementeditForm.get('repassword').hasError('required')">
+                                    Repeat Password is required and password should be of minimum 6 characters.
+                                </mat-error>
+                                <mat-error *ngIf="!userManagementeditForm.get('repassword').hasError('required') &&
+                                    userManagementeditForm.get('repassword').hasError('passwordsNotMatching')">
+                                    Repeat Passwor And Repeat Passwords must match
+                                </mat-error>
+                            </mat-form-field> -->
+                    
+                            <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example user icon">account_circle</mat-icon>
+                                <mat-label>First Name *</mat-label>
+                                <input style="margin-left: 4%;" matInput formControlName="firstName" maxlength="30">
+                                <mat-error *ngIf="userManagementeditForm.get('firstName').hasError('required')">
+                                    FirstName is required
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('firstName').hasError('firstName')">
+                                    Please enter a valid FirstName
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('firstName').hasError('pattern')">
+                                    Enter valid First Name
+                                </mat-error>
+                            </mat-form-field>
+                           
+                            <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example user icon">account_circle</mat-icon>
+                                <mat-label>Last Name *</mat-label>
+                                <input style="margin-left: 4%;" matInput formControlName="lastName" maxlength="30">
+                                <mat-error *ngIf="userManagementeditForm.get('lastName').hasError('required')">
+                                    LastName is required
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('lastName').hasError('lastName')">
+                                    Please enter a valid LastName
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('lastName').hasError('pattern')">
+                                    Enter valid Last Name
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- <select placeholder="select role" id="inputState" (change)="changecompany($event)" formControlName="companyName">
+                                <option value="" hidden>Select Company</option>
+                                <option *ngFor="let company of companyListData" [value]="company.id">{{company.companyName}}</option>
+                            </select>  -->
+        
+        
+                            <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example mail icon">mail</mat-icon>
+                                <mat-label>Email *</mat-label>
+                                <input style="margin-left: 4%;" disabled matInput formControlName="email">
+                                <mat-error *ngIf="userManagementeditForm.get('email').hasError('required')">
+                                    Email is required
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('email').hasError('pattern')">
+                                    Enter valid Email Id
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('email').hasError('email')">
+                                    Please enter a valid email address
+                                </mat-error>
+                            </mat-form-field>
+        
+                            <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example place icon">place</mat-icon>
+                                <mat-label>Location *</mat-label>
+                                <input style="margin-left: 4%;" matInput formControlName="address">
+                                <mat-error *ngIf="userManagementeditForm.get('address').hasError('required')">
+                                    Location is required
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('address').hasError('address')">
+                                    Please enter a valid Location
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('mobileNo').hasError('pattern')">
+                                    Enter valid Location
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example Whatsapp icon">Whatsapp</mat-icon>
+                                <mat-label> WhatsApp ID </mat-label>
+                                <input style="margin-left: 4%;" matInput formControlName="whatsappId"  minlength="6" maxlength="14">
+                                <mat-error *ngIf="userManagementeditForm.get('whatsappId').hasError('required')">
+                                    WhatsApp ID is required
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('whatsappId').hasError('whatsappId')">
+                                    Please enter a valid   WhatsApp ID is required
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('whatsappId').hasError('pattern')">
+                                    Enter valid WhatsApp ID is required
+                                </mat-error>
+                            </mat-form-field>
+        
+                              <mat-form-field class="full-width">
+                                <mat-icon class="icon_space" aria-hidden="false" aria-label="Example skype icon">Skype</mat-icon>
+                                <mat-label>Skype ID </mat-label>
+                                <input style="margin-left: 4%;" matInput formControlName="skypeid">
+                                <mat-error *ngIf="userManagementeditForm.get('skypeid').hasError('required')">
+                                    Skype Id is required
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('skypeid').hasError('skypeid')">
+                                    Please enter a valid Skype ID
+                                </mat-error>
+                                <mat-error *ngIf="userManagementeditForm.get('skypeid').hasError('pattern')">
+                                    Please enter a valid Skype ID
+                                </mat-error>
+                            </mat-form-field>
+                            <button class="cst-modal__button cst-modal__button--submit" type="submit">Submit</button>
+                        </form>
+                        <!-- old form -->
+
+
+                        <!-- <form [formGroup]="userManagementeditForm" (ngSubmit)=" onSubmit()">
+                   
+                    <select  placeholder="select role" id="inputState" (change)="changeRole($event)" formControlName="userRoleId">
+                        <option *ngFor="let role of roleListData" [ngClass]="{'d-none': role.isActive === 'N'}" [value]="role.id">{{role.roleName}}</option>
+                    </select>
+               
+                    <mat-form-field  class="full-width" appearance="outline">
+                        <mat-label>User Name</mat-label>
+                        <input  matInput formControlName="username">
+                        <mat-error *ngIf="userManagementeditForm.get('username').hasError('required')">
+                            User Name is required
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('username').hasError('username')">
+                            Please enter a valid User Name
+                        </mat-error>
+                         <mat-error *ngIf="userManagementeditForm.get('username').hasError('pattern')">
+                        Enter valid user Name
+                    </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput type="text"  [formControl]="userManagementeditForm.controls['mobileNo']" formControlName="mobileNo" >
+                        <mat-error *ngIf="userManagementeditForm.get('mobileNo').hasError('required')">
+                            Mobile Number is required and mobile number should be minimum 10 digit
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('mobileNo').hasError('pattern')">
+                            Enter valid mobile number
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName">
+                        <mat-error *ngIf="userManagementeditForm.get('firstName').hasError('required')">
+                            First Name is required
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('firstName').hasError('firstName')">
+                            Please enter a valid First Name
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('firstName').hasError('pattern')">
+                            Enter valid First Name
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName">
+                        <mat-error *ngIf="userManagementeditForm.get('lastName').hasError('required')">
+                            Last Name is required
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('lastName').hasError('lastName')">
+                            Please enter a valid Last Name
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('lastName').hasError('pattern')">
+                            Enter valid Last Name
+                        </mat-error>
+                    </mat-form-field>
+
+                        <select  placeholder="select company" id="inputState" (change)="changecompany($event)" matInput  formControlName="companyName">
+                                <option *ngFor="let company of companyListData" [value]="company.id">{{company.companyName}}</option>
+                        </select>
+                
+                    <mat-form-field  class="full-width" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input  matInput formControlName="email">
+                        <mat-error *ngIf="userManagementeditForm.get('email').hasError('required')">
+                            Email is required
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('email').hasError('email')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('email').hasError('pattern')">
+                            Enter valid email Address
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Enter Location</mat-label>
+                        <input matInput formControlName="address">
+                        <mat-error *ngIf="userManagementeditForm.get('address').hasError('required')">
+                            Location is required
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('address').hasError('address')">
+                            Please enter a valid Location
+                        </mat-error>
+                        <mat-error *ngIf="userManagementeditForm.get('address').hasError('pattern')">
+                            Enter valid Location
+                        </mat-error>
+                    </mat-form-field>
+                    
+
+                    <button [disabled]="enableSubmitStatus" class="cst-modal__button cst-modal__button--submit" type="submit">Submit</button>
+                   
+                </form> -->
+            </div>
+        </div>
+
+    </div>
+
+</div>
